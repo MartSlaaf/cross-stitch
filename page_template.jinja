@@ -1,0 +1,8 @@
+\begin{tabular}{l||{{ (['l']*patch.shape[1])|join('|') }}}
+{} {% for c in range(patch.shape[1]) %} & \rotatebox{90}{ {{ ((c+start_column)|string()).zfill(col_fill) }} } {% endfor %}\\
+\hline
+{% for r in range(patch.shape[0]) %}
+\hline
+{{ ((r+start_row)|string()).zfill(row_fill) }} {% for c in range(patch.shape[1]) %}& {{ patch[r, c] }} {% endfor %}\\
+{% endfor %}
+\end{tabular}

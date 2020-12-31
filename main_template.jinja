@@ -1,0 +1,67 @@
+\documentclass{article}
+    \usepackage[utf8]{inputenc}
+    \usepackage{booktabs}
+    \usepackage{longtable}
+    \usepackage{tabularx}
+    \usepackage{array,multirow,graphicx}
+    
+\usepackage{geometry} % Простой способ задавать поля
+	\geometry{top=25mm}
+	\geometry{bottom=20mm}
+	\geometry{left=35mm}
+	\geometry{right=20mm}
+    
+    \usepackage{multicol} % double-column inline mode
+    \usepackage{graphicx}  % image insertion
+    \usepackage{float} % image positioning
+    \setlength{\parindent}{0pt} % change paragraph indentation
+    \usepackage{caption} % for caption* environment
+    
+    \usepackage{fancyhdr} % header
+    	\pagestyle{fancy}
+     	\renewcommand{\headrulewidth}{0pt}  % Толщина линейки, отчеркивающей верхний колонтитул
+        \fancyhf{} % очистка текущих значений
+        \fancyhead[R]{\thepage} % page number right atop
+    
+    \begin{document}
+    \fontfamily{lmtt}\selectfont
+
+\thispagestyle{empty}
+\subsection*{Instructions and Symbol Key for Design “{{ project_name }}”}
+
+Use {{ multi_threading }} strands of thread for cross stitch.
+
+Stitches: {{ shape[0] }}$\times${{ shape[1] }}.
+
+\begin{multicols}{2}
+\textbf{Thread key (DMC):} \\
+{% for key, color in palette.items() %}
+{{ key }} = {{ color }} 
+{% endfor %}
+
+\columnbreak
+
+\textbf{Shopping cart (for Aida \#{{ aida }}):} \\
+{% for color, meters in shopping_cart.items() %}
+DMC {{ color }}: {{ meters|round(1) }}m or {{ (meters/8)|round(0, 'ceil')|int }} 8m packs
+{% endfor %}
+\end{multicols}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\linewidth]{scheme.png}
+    \caption*{\texttt{Scheme depicted as close to the result as possible}}
+\end{figure}
+
+Should you have any questions, feel free to contact me: zharova.anna.v@gmail.com
+
+\pagebreak \setlength{\tabcolsep}{1pt}
+
+\setcounter{page}{1}
+{% for i in range(row_number) %}
+    {% for j in range(column_number) %}
+\input{page_{{ i }}_{{ j }}}
+
+    {% endfor %} 
+{% endfor %} 
+\end{document}
