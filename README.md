@@ -9,4 +9,4 @@ Supports:
 - calculation of thread length required
 - PDF scheme generation (requires pdflatex)
 
-[Example](blob/main/Lenna.ipynb)
+[Example](Lenna.ipynb)
